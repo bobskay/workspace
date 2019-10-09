@@ -1,0 +1,18 @@
+version: '3'
+services:
+  configserver:
+     privileged: true
+     image: java
+     container_name: mservice-config-server
+     volumes:
+        - $PWD/:/temp
+        - /opt:/opt
+        - /etc/hosts:/etc/hosts
+        - /home/logs:/opt/logs
+     networks:
+        mynet:
+          ipv4_address: 192.168.2.100
+     command: java -jar /temp/mservice-config-server-0.1.jar
+networks:
+  mynet:
+    external: true

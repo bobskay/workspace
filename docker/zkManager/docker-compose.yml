@@ -1,0 +1,15 @@
+version: '3'
+services:
+   zkmanager:
+     privileged: true
+     image: java
+     container_name: zkmanager
+     volumes:
+        - $PWD/:/temp
+     networks:
+        mynet:
+          ipv4_address: 192.168.2.6
+     command: java -jar /temp/zk-manager-0.1.jar
+networks:
+  mynet:
+    external: true

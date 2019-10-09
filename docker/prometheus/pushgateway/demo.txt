@@ -1,0 +1,4 @@
+http_request{url="/book/insert",host="web2"} 1
+http_request{url="/book/delete"} 2
+http_request{url="/book/select",host="web1"} 3
+http_request{url="/book/select",host="web2"} 3

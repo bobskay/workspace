@@ -1,0 +1,35 @@
+version: '3'
+services:
+   zoo1:
+     privileged: true
+     image: zookeeper:3.4.11
+     container_name: zoo1
+     environment:
+        ZOO_MY_ID: 1
+        ZOO_SERVERS: quorumListenOnAllIPs:true server.1=zoo1:2888:3888 server.2=zoo2:2888:3888 server.3=zoo3:2888:3888
+     networks:
+        mynet:
+          ipv4_address: 192.168.2.31
+   zoo2:
+     privileged: true
+     image: zookeeper:3.4.11
+     container_name: zoo2
+     environment:
+        ZOO_MY_ID: 2
+        ZOO_SERVERS: quorumListenOnAllIPs:true server.1=zoo1:2888:3888 server.2=zoo2:2888:3888 server.3=zoo3:2888:3888
+     networks:
+        mynet:
+          ipv4_address: 192.168.2.32
+   zoo3:
+     privileged: true
+     image: zookeeper:3.4.11
+     container_name: zoo3
+     environment:
+        ZOO_MY_ID: 3
+        ZOO_SERVERS: quorumListenOnAllIPs:true server.1=zoo1:2888:3888 server.2=zoo2:2888:3888 server.3=zoo3:2888:3888
+     networks:
+        mynet:
+          ipv4_address: 192.168.2.33
+networks:
+  mynet:
+    external: true

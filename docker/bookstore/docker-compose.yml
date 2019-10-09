@@ -1,0 +1,44 @@
+version: '3'
+services:
+  bookstore1:
+    privileged: true
+    image: java
+    container_name: bookstore-provider1
+    volumes:
+      - $PWD/:/temp
+      - /docker:/opt
+      - /etc/hosts:/etc/hosts
+      - /home/logs:/opt/logs
+    networks:
+      mynet:
+        ipv4_address: 192.168.2.121
+    command: java -jar /temp/bookstore-provider-0.1.jar --spring.cloud.config.label=1
+  bookstore2:
+    privileged: true
+    image: java
+    container_name: bookstore-provider2
+    volumes:
+      - $PWD/:/temp
+      - /opt:/opt
+      - /etc/hosts:/etc/hosts
+      - /home/logs:/opt/logs
+    networks:
+      mynet:
+        ipv4_address: 192.168.2.122
+    command: java -jar /temp/bookstore-provider-0.1.jar --spring.cloud.config.label=2
+  bookstore3:
+    privileged: true
+    image: java
+    container_name: bookstore-provider3
+    volumes:
+      - $PWD/:/temp
+      - /opt:/opt
+      - /etc/hosts:/etc/hosts
+      - /home/logs:/opt/logs
+    networks:
+      mynet:
+        ipv4_address: 192.168.2.123
+    command: java -jar /temp/bookstore-provider-0.1.jar --spring.cloud.config.label=3
+networks:
+  mynet:
+    external: true

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="wang.wangby.mservice.config.dao.AppConfigDao" >
+ 
+
+  <select id="getGloablConfig" resultType="wang.wangby.mservice.config.model.AppConfig">
+  	select * from m_appconfig where application is null or application='' order by application,profile,varLabel
+  </select>
+
+</mapper>

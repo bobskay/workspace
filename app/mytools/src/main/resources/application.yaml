@@ -1,0 +1,15 @@
+my:
+  webfilter:
+    enable: true
+  index:
+    title: "个人工具箱"
+  monitor:
+    pushgateway:
+      base-url: "http://myos:9091/"
+      enabled: true
+    grafana:
+      base-url: "http://myos:3000/"
+      enabled: true
+eureka:
+  instance:
+    instance-id: mytools

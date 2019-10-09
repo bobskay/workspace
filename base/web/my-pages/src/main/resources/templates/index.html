@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <title>${title}</title>
+    <style>
+	.hightLight{
+		background-color: yellow;
+	}
+	</style>
+  </head>
+
+  <body style="display: none">
+
+    <nav class="navbar navbar-inverse navbar-fixed-top" id="menuBar">
+      <div class="container-fluid" style="padding-right: 0;padding-left: 0">
+        <div class="navbar-header col-sm-3 col-md-2">
+          <a class="navbar-brand" href="#" >${title}</a>
+        </div>
+        
+        <div class="navbar-header col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 " style="padding-right: 0;padding-left: 0">
+        	<input  style="color:black;background: white;width: 100%;padding-left: 0;padding-right: 0;margin-left: 0;margin-left: 0"
+        		 onkeyup="hightLight(this.value)" onblur="hightLight(this.value)"
+        		 class='navbar-brand' type='text'/>
+        </div>
+       
+       <!--  <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav navbar-right" style="vertical-align: middle;">
+            <li><a href="#" onclick='logout()'>注销</a></li>
+          </ul>
+          
+        </div> -->
+      </div>
+    </nav>
+
+    <div class="container-fluid">
+      <div class="row" >
+        <div class="col-sm-3 col-md-2 sidebar" style="padding: 5px">
+       		 <div id="tree"></div>  	 
+        </div>
+        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main" id="main"  style="padding: 5px">
+        
+        </div>
+      </div>
+    </div>
+
+ </body>
+</html>
+
+
+<script src="/resources/js/importJs.js"></script>
+
+#foreach($js in $jsList)
+<script src="${js}"></script>
+#end
+
+<script>
+
+$.fn.datetimepicker.defaults.format="YYYY-MM-DD HH:mm:ss";
+$.fn.datetimepicker.defaults.locale= moment.locale('zh-cn');
+$.fn.datetimepicker.defaults.showTodayButton= true;
+$.fn.datetimepicker.defaults.showClose= true;
+$.fn.datetimepicker.defaults.showClear= true;
+$("body").show();
+
+ajaxUtil.json('${path}/treeView','',function(ret){
+	$('#tree').treeview({
+		data:ret.data,
+		onNodeSelected:function(event, data) {
+			if(data.id){
+				var url=data.url;
+				if(!url){
+				    return;
+                }
+				ajaxUtil.html(url,null,function(html){
+					$("#main").html(html);
+				});
+			}
+		}
+	});
+	var forward="$!{forward}";
+	if(forward){
+        ajaxUtil.html(forward,null,function(html){
+            $("#main").html(html);
+        });
+    }
+})
+
+function MyMenu(){
+}
+//跳转到某个菜单
+//@see https://codeload.github.com/jonmiles/bootstrap-treeview/zip/master
+MyMenu.prototype.open = function(url,param) {
+    var nodes= $('#tree').treeview('getUnselected');
+    for(var i=0;i<nodes.length;i++){
+        if(nodes[i].url==url){
+            $('#tree').treeview('selectNode', [ nodes[i].nodeId, { silent: true } ]);
+            ajaxUtil.html(url,param,function(html){
+                $("#main").html(html);
+            });
+            return;
+        }
+    }
+    //找不到的情况下直接开
+    ajaxUtil.html(url,param,function(html){
+        $("#main").html(html);
+    });
+}
+var menu=new MyMenu();
+
+
+function hightLight(val){
+	$("td").each(function(idx,el){
+		hightLightText(el,val);
+	});
+	$("span").each(function(idx,el){
+		hightLightText(el,val);
+	});
+	$("div").each(function(idx,el){
+		hightLightText(el,val);
+	});
+	$("button").each(function(idx,el){
+		hightLightText(el,val);
+	});
+}
+
+function hightLightText(el,val){
+	var html=$(el).html();
+	var text=$(el).text();
+	var mark=$(el).find("font")
+	if(mark.attr('class')=='hightLight'){
+		html=html.replaceAll('<font class="hightLight">','');
+		html=html.replaceAll('</font>','');
+	}
+	
+	if(html==text){
+		if(val){
+			text=text.replaceAll(val,'<font class="hightLight">'+val+'</font>');	
+		}
+		$(el).html(text);
+	}
+}
+
+</script>

@@ -1,0 +1,6 @@
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+wang.wangby.springboot.autoconfigure.velocity.VelocityAutoConfiguration,\
+wang.wangby.springboot.autoconfigure.json.JsonAutoConfiguration,\
+wang.wangby.springboot.autoconfigure.fitler.MyFilterAutoConfiguration,\
+wang.wangby.springboot.autoconfigure.mvc.MvcAutoconfguration,\
+wang.wangby.springboot.autoconfigure.base.SpringrAutoConfiguration

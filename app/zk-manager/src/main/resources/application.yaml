@@ -1,0 +1,11 @@
+logging:
+  level:
+    root: info
+    wang.wangby: debug
+  pattern:
+    console: "%d{HH:mm:ss.SSS} %-5level %logger{0}.%M:%L - %msg%n"
+
+
+my:
+  webfilter:
+    enable: true

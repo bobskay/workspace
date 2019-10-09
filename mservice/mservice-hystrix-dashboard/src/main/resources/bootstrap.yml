@@ -1,0 +1,6 @@
+spring:
+  cloud:
+    config:
+      uri: http://configserver:9001/config/
+  application:
+    name: mservice-hystrix-dashboard

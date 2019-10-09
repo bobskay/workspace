@@ -1,0 +1,74 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>wang.wangby</groupId>
+        <artifactId>app-parent</artifactId>
+        <version>0.1</version>
+    </parent>
+
+    <artifactId>a-web-parent</artifactId>
+    <packaging>pom</packaging>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>wang.wangby</groupId>
+                <artifactId>my-webfilters</artifactId>
+                <version>${my.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>wang.wangby</groupId>
+                <artifactId>my-pages</artifactId>
+                <version>${my.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>wang.wangby</groupId>
+                <artifactId>web-all</artifactId>
+                <version>${my.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>wang.wangby</groupId>
+                <artifactId>my-template</artifactId>
+                <version>${my.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>wang.wangby</groupId>
+                <artifactId>webapp-starter</artifactId>
+                <version>${my.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>wang.wangby</groupId>
+                <artifactId>echarts4j</artifactId>
+                <version>${my.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>wang.wangby</groupId>
+                <artifactId>web-autoconfigure</artifactId>
+                <version>${my.version}</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+    <dependencies>
+        <dependency>
+            <groupId>wang.wangby</groupId>
+            <artifactId>base-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+
+    </dependencies>
+
+    <modules>
+        <module>my-pages</module>
+        <module>my-webfilters</module>
+        <module>echarts4j</module>
+        <module>web-autoconfigure</module>
+        <module>web-all</module>
+    </modules>
+
+</project>

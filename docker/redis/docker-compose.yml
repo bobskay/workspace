@@ -1,0 +1,16 @@
+version: '3'
+services:
+  redis1:
+    image: redis
+    container_name: redis61
+    ports:
+      - "6379:6379"
+    volumes:
+      - /home/data/redis/redis1:/data
+    networks:
+      mynet:
+        ipv4_address: 192.168.2.61
+
+networks:
+  mynet:
+    external: true

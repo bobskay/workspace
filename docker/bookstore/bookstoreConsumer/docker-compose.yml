@@ -1,0 +1,18 @@
+version: '3'
+services:
+  bookstoreConsumer:
+    privileged: true
+    image: java
+    container_name: bookstoreConsumer
+    volumes:
+      - $PWD/:/temp
+      - /docker:/opt
+      - /etc/hosts:/etc/hosts
+      - /home/logs:/opt/logs
+    networks:
+      mynet:
+        ipv4_address: 192.168.2.125
+    command: java -jar /temp/bookstore-consumer-0.1.jar
+networks:
+  mynet:
+    external: true

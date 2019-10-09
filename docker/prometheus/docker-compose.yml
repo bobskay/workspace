@@ -1,0 +1,13 @@
+version: '3'
+services:
+  prometheus:
+    privileged: true
+    image: prom/prometheus
+    container_name: prometheus
+    user: root
+    volumes:
+      - /etc/hosts:/etc/hosts
+      - /home/data/prometheus:/prometheus
+      - $PWD/prometheus.yml:/etc/prometheus/prometheus.yml
+    ports:
+      - 9090:9090

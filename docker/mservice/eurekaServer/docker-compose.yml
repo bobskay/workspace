@@ -1,0 +1,44 @@
+version: '3'
+services:
+  eureka1:
+    privileged: true
+    image: java
+    container_name: eureka1
+    volumes:
+      - $PWD/:/temp
+      - /opt:/opt
+      - /home/logs:/opt/logs
+      - /etc/hosts:/etc/hosts
+    networks:
+      mynet:
+        ipv4_address: 192.168.2.110
+    command: java -jar /temp/mservice-eureka-server-0.1.jar --spring.cloud.config.label=1
+  eureka2:
+    privileged: true
+    image: java
+    container_name: eureka2
+    volumes:
+      - $PWD/:/temp
+      - /opt:/opt
+      - /home/logs:/opt/logs
+      - /etc/hosts:/etc/hosts
+    networks:
+      mynet:
+        ipv4_address: 192.168.2.111
+    command: java -jar /temp/mservice-eureka-server-0.1.jar --spring.cloud.config.label=2
+  eureka3:
+    privileged: true
+    image: java
+    container_name: eureka3
+    volumes:
+      - $PWD/:/temp
+      - /opt:/opt
+      - /home/logs:/opt/logs
+      - /etc/hosts:/etc/hosts
+    networks:
+      mynet:
+        ipv4_address: 192.168.2.112
+    command: java -jar /temp/mservice-eureka-server-0.1.jar --spring.cloud.config.label=3
+networks:
+  mynet:
+    external: true

@@ -1,0 +1,39 @@
+<form name="fm" id="fm">
+    <table class="form">
+        <tr>
+            <td>
+                包名
+                <input class="form-control" validate="notNull" name="packageName" value="wang.wangby">
+            </td>
+        </tr>
+        <tr>
+            <td>
+                类名
+                <input class="form-control" name="rootClass" validate="notNull" value="test">
+            </td>
+        </tr>
+        <tr>
+            <td>
+                js
+                <textarea name="json" validate="notNull" style="width: 100%" rows="10"></textarea>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <button type="button" onclick="toJava()" class=" btn-success">生成</button>
+            </td>
+        </tr>
+    </table>
+</form>
+
+<script>
+    function toJava() {
+        if (!validate.valiForm(fm)) {
+            return;
+        }
+        var data = $(fm).serialize();
+        ajaxUtil.html("$path/toJava", data, function (content) {
+           dialog.alert(content)
+        })
+    }
+</script>

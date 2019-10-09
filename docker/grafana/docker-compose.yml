@@ -1,0 +1,12 @@
+version: '3'
+services:
+  grafana:
+    privileged: true
+    image: grafana/grafana:5.0.1
+    container_name: grafana
+    user: root
+    volumes:
+      - /home/data/grafana:/var/lib/grafana
+      - /etc/hosts:/etc/hosts
+    ports:
+      - 3000:3000

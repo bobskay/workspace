@@ -1,0 +1,32 @@
+version: '3'
+services:
+  mysql1:
+    privileged: true
+    restart: always
+    image: docker.io/mysql:5.5
+    container_name: mysql1
+    volumes:
+      - /docker/mysql/data1:/var/lib/mysql
+      - /usr/share/zoneinfo/Asia/Shanghai:/etc/localtime
+    networks:
+        mynet:
+          ipv4_address: 192.168.2.11
+    environment:
+      - MYSQL_ROOT_PASSWORD=123456
+      
+  mysql2:
+    privileged: true
+    restart: always
+    image: docker.io/mysql:5.5
+    container_name: mysql2
+    volumes:
+      - /docker/mysql/data2:/var/lib/mysql
+      - /usr/share/zoneinfo/Asia/Shanghai:/etc/localtime
+    networks:
+        mynet:
+          ipv4_address: 192.168.2.12
+    environment:
+      - MYSQL_ROOT_PASSWORD=123456                                       
+networks:
+  mynet:
+    external: true

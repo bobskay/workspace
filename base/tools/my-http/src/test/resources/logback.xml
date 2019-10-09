@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+	<conversionRule conversionWord="code" converterClass="wang.wangby.log.CodeConvert" />
+
+	<appender name="stdout" class="ch.qos.logback.core.ConsoleAppender">
+		<encoder>
+			<pattern>%d{HH:mm:ss} %-5level %t %code %msg%n</pattern>
+			<charset>UTF-8</charset>
+		</encoder>
+	</appender>
+
+
+	<logger name="wang.wangby" level="debug" addtivity="false"/>
+
+	<root level="info">
+		<appender-ref ref="stdout" />
+	</root>
+</configuration>

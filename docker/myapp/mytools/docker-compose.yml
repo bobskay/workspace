@@ -1,0 +1,15 @@
+version: '3'
+services:
+  mytools:
+     privileged: true
+     image: java
+     container_name: mytools
+     volumes:
+        - /media/sf_linux/workspace/app/mytools/target/myNote-0.1.jar:/myApp.jar
+     networks:
+        mynet:
+          ipv4_address: 192.168.2.99
+     command: java -jar /myApp.jar
+networks:
+  mynet:
+    external: true

@@ -1,0 +1,51 @@
+<table class="table table-bordered ">
+    <tr>
+		<td width="20%">图书信息</td>
+		<td width="80%">
+			<input class="form-control" name="bookId" validate="notNull" maxlength="20" value="${bookInfo.bookId}"/>
+		</td>
+	</tr>
+	<tr>
+		<td width="20%">书名</td>
+		<td width="80%">
+			<input class="form-control" name="bookName" validate="" maxlength="64" value="${bookInfo.bookName}"/>
+		</td>
+	</tr>
+	<tr>
+		<td width="20%">发行日期</td>
+		<td width="80%">
+			<input class="form-control" name="publication" validate="" maxlength="" value="${bookInfo.publication}"/>
+		</td>
+	</tr>
+	<tr>
+		<td width="20%">售价</td>
+		<td width="80%">
+			<input class="form-control" name="price" validate="" maxlength="11" value="${bookInfo.price}"/>
+		</td>
+	</tr>
+	<tr>
+		<td width="20%">ISBN</td>
+		<td width="80%">
+			<input class="form-control" name="isbn" validate="" maxlength="32" value="${bookInfo.isbn}"/>
+		</td>
+	</tr>
+	<tr>
+		<td width="20%">有效标识</td>
+		<td width="80%">
+			<input class="form-control" name="valid" validate="" maxlength="4" value="${bookInfo.valid}"/>
+		</td>
+	</tr>
+	<tr>
+		<td width="20%">库存</td>
+		<td width="80%">
+			<input class="form-control" name="remain" validate="" maxlength="11" value="${bookInfo.remain}"/>
+		</td>
+	</tr>
+	<tr>
+		<td width="20%">创建时间</td>
+		<td width="80%">
+			<input class="form-control" name="createTime" validate="" maxlength="" value="${bookInfo.createTime}"/>
+		</td>
+	</tr>
+
+</table>
