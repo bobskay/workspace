@@ -11,6 +11,7 @@ import wang.wangby.utils.http.HttpUtil;
 
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.ExecutionException;
+import java.util.concurrent.TimeUnit;
 
 @Slf4j
 public class HttpAsyncClientProviderTest {
@@ -28,7 +29,7 @@ public class HttpAsyncClientProviderTest {
             return null;
         });
         client.execute(get, callback);
-        latch.await();
+        latch.await(1, TimeUnit.SECONDS);
 
     }
 }

@@ -3,9 +3,11 @@ package wang.wangby.mytools;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.netflix.hystrix.EnableHystrix;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.annotation.Import;
 import wang.wangby.monitor.config.MyMonitorAutoConfiguration;
+import wang.wangby.mservice.utils.config.MserviceUtilAutoConfiguration;
 import wang.wangby.page.config.IndexPageAutoConfiguration;
 import wang.wangby.testcase.config.MyTestCaseAutoConfiguration;
 import wang.wangby.mytools.config.WebSocketConfig;
@@ -15,9 +17,11 @@ import wang.wangby.mytools.config.WebSocketConfig;
 @Import({IndexPageAutoConfiguration.class,
         MyMonitorAutoConfiguration.class,
         MyTestCaseAutoConfiguration.class,
-        WebSocketConfig.class
+        WebSocketConfig.class,
+        MserviceUtilAutoConfiguration.class
 })
 @Slf4j
+@EnableHystrix
 public class MyToolsApp {
 
     public static void main(String args[]){

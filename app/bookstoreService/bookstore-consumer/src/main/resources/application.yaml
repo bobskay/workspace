@@ -2,3 +2,7 @@ info:
   app:
     name: bookstore-consumer
   version: 0.1
+
+ribbon:
+  ConnectTimeout: 5000
+  ReadTimeout: 5000

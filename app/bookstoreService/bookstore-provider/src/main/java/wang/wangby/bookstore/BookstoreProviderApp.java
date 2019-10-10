@@ -8,11 +8,14 @@ import org.springframework.cloud.netflix.hystrix.EnableHystrix;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Import;
 import wang.wangby.autoconfigure.dao.DaoAutoConfiguration;
+import wang.wangby.mservice.utils.config.MserviceUtilAutoConfiguration;
 import wang.wangby.page.config.IndexPageAutoConfiguration;
 
 @SpringBootApplication
 @EnableHystrix
-@Import({IndexPageAutoConfiguration.class, DaoAutoConfiguration.class})
+@Import({IndexPageAutoConfiguration.class,
+        MserviceUtilAutoConfiguration.class,
+        DaoAutoConfiguration.class})
 public class BookstoreProviderApp {
     public static void main(String args[]){
         SpringApplication.run(BookstoreProviderApp.class, args);

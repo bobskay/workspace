@@ -103,7 +103,8 @@ public class BookInfoController extends BaseController implements BookstoreApi {
 
     @RequestMapping("/test")
     @HystrixCommand
-    public String test() {
+    public String test(Long millis) throws InterruptedException {
+        Thread.sleep(millis);
         return instanceId;
     }
 

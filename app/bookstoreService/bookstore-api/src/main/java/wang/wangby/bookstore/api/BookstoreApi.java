@@ -11,5 +11,5 @@ public interface BookstoreApi {
     BookInfo getBook(@RequestParam("id") Long id);
 
     @RequestMapping("/bookInfo/test")
-    String test();
+    String test(@RequestParam("millis") Long millis) throws InterruptedException;
 }

@@ -3,13 +3,13 @@ package wang.wangby.service;
 import wang.wangby.dao.BaseDao;
 import wang.wangby.model.Setter;
 import wang.wangby.model.dao.BaseModel;
+import wang.wangby.model.dao.Pagination;
 import wang.wangby.utils.CollectionUtil;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.function.Consumer;
-import java.util.function.Supplier;
 
 
 abstract  public class DefaultService<T extends BaseModel> extends BaseService{
@@ -76,4 +76,23 @@ abstract  public class DefaultService<T extends BaseModel> extends BaseService{
     abstract public BaseDao defaultDao();
 
     abstract public T newModel();
+
+    public Pagination selectPage(T model, Integer offset, Integer limit) {
+        return  selectPage(model,defaultDao(),offset,limit);
+    }
+
+    public void insert(T t) {
+        if(t.id()==null){
+            t.id(newId());
+        }
+        defaultDao().insert(t);
+    }
+
+    public void updateById(T t) {
+        defaultDao().updateById(t);
+    }
+
+    public Integer deleteById(Long[] ids) {
+        return defaultDao().deleteById(ids);
+    }
 }

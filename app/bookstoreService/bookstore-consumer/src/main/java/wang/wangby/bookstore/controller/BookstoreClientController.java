@@ -48,4 +48,12 @@ public class BookstoreClientController extends BaseController {
             return Response.fail(error);
         }
     }
+
+    @RequestMapping("/test")
+    public String test(Long millis) throws InterruptedException {
+        if(millis==null){
+            return "请输入休眠时间例如:?millis=1000";
+        }
+         return bookstoreApi.test(millis);
+    }
 }

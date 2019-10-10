@@ -1,0 +1,33 @@
+<table class="table table-bordered ">
+	<tr>
+		<td width="20%">application</td>
+		<td width="80%">
+			<input class="form-control" name="application" validate="" value="$!{appConfig.application}"/>
+		</td>
+	</tr>
+	<tr>
+		<td width="20%">profile</td>
+		<td width="80%">
+			<input class="form-control" name="profile" validate="" maxlength="64" value="$!{appConfig.profile}"/>
+		</td>
+	</tr>
+	<tr>
+		<td width="20%">label</td>
+		<td width="80%">
+			<input class="form-control" name="varLabel" validate="" maxlength="" value="$!{appConfig.varLabel}"/>
+		</td>
+	</tr>
+	<tr>
+		<td width="20%">key</td>
+		<td width="80%">
+			<input class="form-control" name="varKey" validate="" maxlength="256" value="$!{appConfig.varKey}"/>
+		</td>
+	</tr>
+	<tr>
+		<td width="20%">value</td>
+		<td width="80%">
+			<input class="form-control" name="varValue" validate="notNull" maxlength="256" value="${appConfig.varValue}"/>
+		</td>
+	</tr>
+
+</table>

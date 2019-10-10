@@ -13,8 +13,3 @@ my:
     title: 图书管理
   webfilter:
     enable: true
-
-info:
-  app:
-    name: bookstore-provider
-  version: 0.1

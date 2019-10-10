@@ -1,16 +1,13 @@
 package wang.wangby.utils.http;
 
-import lombok.SneakyThrows;
 import org.apache.http.Consts;
 import org.apache.http.HttpEntity;
-import org.apache.http.HttpHost;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpRequestRetryHandler;
 import org.apache.http.client.config.RequestConfig;
 import org.apache.http.client.methods.*;
 import org.apache.http.config.Registry;
 import org.apache.http.config.RegistryBuilder;
-import org.apache.http.config.SocketConfig;
 import org.apache.http.conn.socket.ConnectionSocketFactory;
 import org.apache.http.conn.socket.PlainConnectionSocketFactory;
 import org.apache.http.conn.ssl.SSLConnectionSocketFactory;
@@ -21,21 +18,10 @@ import org.apache.http.impl.client.DefaultHttpRequestRetryHandler;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.impl.conn.PoolingHttpClientConnectionManager;
 import org.apache.http.util.EntityUtils;
-import sun.net.www.http.HttpClient;
-import wang.wangby.utils.FileUtil;
 import wang.wangby.utils.StringUtil;
 
 import javax.net.ssl.SSLContext;
-import javax.net.ssl.TrustManager;
-import javax.net.ssl.X509TrustManager;
 import java.io.IOException;
-import java.io.InputStream;
-import java.nio.charset.Charset;
-import java.security.KeyManagementException;
-import java.security.NoSuchAlgorithmException;
-import java.security.cert.CertificateException;
-import java.util.Map;
-import java.util.function.Consumer;
 import java.util.function.Function;
 
 public class HttpUtil {
@@ -124,14 +110,20 @@ public class HttpUtil {
     public static <T> T put(String url, String body, Function<CloseableHttpResponse, T> callback, CloseableHttpClient httpClient) throws IOException {
         HttpUriRequest put=createRequest(url,HttpRequestMethod.PUT,body,null);
         try (CloseableHttpResponse response = httpClient.execute(put)) {
-            return callback.apply(response);
+            if(callback!=null){
+                return callback.apply(response);
+            }
+            return null;
         }
     }
 
     public static <T> T delete(String url, Function<CloseableHttpResponse, T> callback, CloseableHttpClient httpClient) throws IOException {
         HttpUriRequest delete=createRequest(url,HttpRequestMethod.PUT.DELETE,null,null);
         try (CloseableHttpResponse response = httpClient.execute(delete)) {
-            return callback.apply(response);
+            if(callback!=null){
+                return callback.apply(response);
+            }
+            return null;
         }
     }
 

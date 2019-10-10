@@ -1,0 +1,73 @@
+<div>
+    <!-- Nav tabs -->
+    <ul class="nav nav-tabs" role="tablist" id="myTabs">
+        <li class="active"><a href="#json" aria-controls="json" role="tab" data-toggle="tab">json</a></li>
+        <li ><a href="#stat" aria-controls="stat" role="tab" data-toggle="tab">stat</a></li>
+    </ul>
+
+    <!-- Tab panes -->
+    <div class="tab-content">
+        <div role="tabpanel" class="tab-pane active" id="json">
+            <pre id="dataCotent"></pre>
+        </div>
+        <div role="tabpanel" class="tab-pane " id="stat">
+            <table class="form ">
+
+                <tr>
+                    <td>appName</td>
+                    <td>$!eurekaClientInfo.serviceName</td>
+                </tr>
+                <tr>
+                    <td>instanceId</td>
+                    <td>$!eurekaClientInfo.instanceId</td>
+                </tr>
+                <tr>
+                    <td>host</td>
+                    <td>$!eurekaClientInfo.serviceInstance.host</td>
+                </tr>
+                <tr>
+                    <td>ip</td>
+                    <td>$!eurekaClientInfo.serviceInstance.instanceInfo.iPAddr</td>
+                </tr>
+
+
+            </table>
+        </div>
+    </div>
+
+    <div class="tab-pane " id="app">
+        <button type="button"  v-show="status=='UP'" onclick="down()" class="btn btn-danger">下线</button>
+        <button type="button"  v-show="status=='DOWN'" onclick="up()" class="btn btn-success">上线</button>
+    </div>
+</div>
+
+
+<script>
+    var  instance=$html.json($eurekaClientInfo);
+    $("#dataCotent").html(utils.jsonToStr(instance));
+
+    function down() {
+        var param="serviceName=$eurekaClientInfo.serviceName";
+        param+="&instanceId=$eurekaClientInfo.instanceId";
+        ajaxUtil.json("$path/down",param,function (data) {
+            load("$eurekaClientInfo.instanceId","$eurekaClientInfo.serviceName");
+        })
+    }
+    function up() {
+        var param="serviceName=$eurekaClientInfo.serviceName";
+        param+="&instanceId=$eurekaClientInfo.instanceId";
+        ajaxUtil.json("$path/up",param,function (data) {
+            load("$eurekaClientInfo.instanceId","$eurekaClientInfo.serviceName");
+        })
+    }
+
+    var pageInfo={
+        status:"$eurekaClientInfo.status"
+    }
+    vueUtil.init({
+        el: '#app',
+        data: pageInfo
+    })
+</script>
+
+

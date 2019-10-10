@@ -15,7 +15,7 @@
 	<dependencies>
 		<dependency>
 			<groupId>wang.wangby</groupId>
-			<artifactId>my-dao</artifactId>
+			<artifactId>mservice-config-server-service</artifactId>
 			<version>0.1</version>
 		</dependency>
 

@@ -1,0 +1,55 @@
+<table class="table table-bordered " id="app">
+    <tr>
+        <th>instanceId</th>
+        <th>host</th>
+        <th>ip</th>
+        <th>status</th>
+        <th></th>
+    </tr>
+    #foreach($eurekaClientInfo in $eurekaClientInfoList)
+    <tr>
+        <td>$eurekaClientInfo.instanceId</td>
+        <td>$!eurekaClientInfo.serviceInstance.host</td>
+        <td>$!eurekaClientInfo.serviceInstance.instanceInfo.iPAddr</td>
+        <td>$eurekaClientInfo.status </td>
+        <td>
+            <button type="button"  v-show="status[${velocityCount}]=='UP'"
+                    onclick="down('$eurekaClientInfo.serviceName','$eurekaClientInfo.instanceId')"
+                    class="btn-sm btn-danger">下线</button>
+            <button type="button"  v-show="status[${velocityCount}]=='DOWN'"
+                    onclick="up('$eurekaClientInfo.serviceName','$eurekaClientInfo.instanceId')"
+                    class="btn-sm btn-success">上线</button>
+        </td>
+    </tr>
+    #end
+</table>
+
+<script>
+    var clientInfo={
+        status:[]
+    };
+    clientInfo.status.push("0");
+    #foreach($eurekaClientInfo in $eurekaClientInfoList)
+    clientInfo.status.push("$eurekaClientInfo.status");
+    #end
+    vueUtil.init({
+        el: '#app',
+        data: clientInfo
+    })
+
+
+    function down(serviceName,instanceId) {
+        var param="serviceName="+serviceName;
+        param+="&instanceId="+instanceId;
+        ajaxUtil.json("$path/down",param,function (data) {
+            load(serviceName);
+        })
+    }
+    function up(serviceName,instanceId) {
+        var param="serviceName="+serviceName;
+        param+="&instanceId="+instanceId;
+        ajaxUtil.json("$path/up",param,function (data) {
+            load(serviceName);
+        })
+    }
+</script>

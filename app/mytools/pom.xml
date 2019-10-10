@@ -50,6 +50,11 @@
             <artifactId>spring-boot-starter-websocket</artifactId>
         </dependency>
 
+        <dependency>
+            <groupId>wang.wangby</groupId>
+            <artifactId>mservice-utils</artifactId>
+            <version>0.1</version>
+        </dependency>
 
     </dependencies>
 

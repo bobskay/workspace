@@ -80,5 +80,6 @@ public class StatistFilter implements WebFilter<Long> {
         }
 
         log.debug("[json]" + InvokeResult.toJs(request.getRequestURI(),time, "remoteHost=" + request.getRemoteHost()));
+        log.debug("\n");
     }
 }

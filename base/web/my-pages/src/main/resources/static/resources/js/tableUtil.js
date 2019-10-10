@@ -99,9 +99,9 @@ TableUtil.prototype.load=function(url,param,callback){
 			if(tableUtil.sidePagination=='server'){
 				data={"total":data.totalCount,"rows":data.result};
 			}
-			var tableId=tableUtil.tableId
+			var tableId=tableUtil.tableId;
 			$("#"+tableId).bootstrapTable('removeAll');
-			$('#'+tableId).bootstrapTable('selectPage',1);
+			//$('#'+tableId).bootstrapTable('selectPage',1);
 			$('#'+tableId).bootstrapTable('load',data);
 			if(callback){
 				callback();
@@ -109,7 +109,6 @@ TableUtil.prototype.load=function(url,param,callback){
 		}else{
 			dialog.alert(resp.message);
 		}
-       
     });
 }
 
@@ -127,25 +126,24 @@ TableUtil.prototype.loadByForm=function(formId){
 	
 	data.limit=10;
 	data.offset=0;
-	tableUtil.queryParam=data;
 	tableUtil.load(url,data);
 }
 
 TableUtil.prototype.insertRow=function(data){
-	$("#"+this.tableId).bootstrapTable('insertRow', {index: 0, row: data});
+	$("#"+tableUtil.tableId).bootstrapTable('insertRow', {index: 0, row: data});
 }
 
 //根据条件移除某些行,field字段名,values值数组
 TableUtil.prototype.remove=function(field,values){
-	$("#"+this.tableId).bootstrapTable('remove', {field: field, values: values});
+	$("#"+tableUtil.tableId).bootstrapTable('remove', {field: field, values: values});
 }
 
 TableUtil.prototype.update=function(id,row){
-	$("#"+this.tableId).bootstrapTable('updateByUniqueId', {id: id, row: row});
+	$("#"+tableUtil.tableId).bootstrapTable('updateByUniqueId', {id: id, row: row});
 }
 
 TableUtil.prototype.getSelections=function(){
-    return $("#"+this.tableId).bootstrapTable('getSelections');
+    return $("#"+tableUtil.tableId).bootstrapTable('getSelections');
 }
 
 //将某行变为超链接

@@ -14,7 +14,11 @@
     <modules>
         <module>mservice-dependencies</module>
         <module>mservice-common</module>
-
+        <module>mservice-utils</module>
+        <module>mservice-config-server/mservice-config-server-service</module>
+        <module>mservice-config-server</module>
+        <module>mservice-admin</module>
+        <module>mservice-eureka-server</module>
     </modules>
 
 </project>

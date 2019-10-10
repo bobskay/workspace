@@ -20,7 +20,7 @@ public class BookstoreApiFallback  implements FallbackFactory<BookstoreApi> {
             }
 
             @Override
-            public String test() {
+            public String test(Long millis) throws InterruptedException {
                 return "feign异常";
             }
         };
